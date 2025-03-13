@@ -91,7 +91,7 @@ The server will start and listen on port `443`.
 Open your web browser and go to:
 
 ```
-http://localhost:443/
+https://localhost:443/
 ```
 
 You should see the main page of the application.
