@@ -44,7 +44,8 @@ Both the frontend and backend are deployed on separate EC2 instances in AWS, ens
 ## Deployment and Key Features Video
 
 
-https://github.com/user-attachments/assets/8421f559-03e6-4931-b16e-dfddf8778a0d
+
+https://github.com/user-attachments/assets/1880f278-2fca-431d-98c8-a8d7a14dfac0
 
 
 ## Getting Started
@@ -104,30 +105,29 @@ The system is divided into three main components:
 
 ![image](https://github.com/user-attachments/assets/04358f66-6b33-43b5-993c-f29593e5460b)
 
-1. *Frontend:* Built with HTML, CSS, and JavaScript. It provides a user-friendly interface for interacting with the property management system. 🌐
+1. *Frontend(Apache)🌐*  
 
-2. *Backend:* Implemented with Spring Boot, it exposes RESTful APIs for CRUD operations on properties. The backend handles all the business logic and communicates with the database. 🛠️
+   - Hosts the HTML+JavaScript client.
+   - Serves static files over HTTPS using Let’s Encrypt certificates.
+   - Communicates with the backend via secure REST API calls.
 
-3. *Database:* MySQL is used to store property data. The database is accessed via JPA/Hibernate in the backend, ensuring seamless data persistence and retrieval. 🗃️
+2. *Backend (Spring)🛠️* 
 
-### Deployment on AWS EC2 Instances ☁️
+   - Provides RESTful API endpoints for user authentication and CRUD operations.
+   - Uses TLS to secure communication with the frontend.
+   - Stores user passwords as hashes in the database.
 
-The system is deployed on two separate EC2 instances for better performance and security:
+3. *Database🗃️*  
 
-- *EC2 Instance 1:* Hosts the Frontend and Backend (Spring Boot application). This instance runs the web application and handles user requests. 🖥️
+   - MySQL is used to store property data. The database is accessed via JPA/Hibernate in the backend, ensuring seamless data persistence and retrieval.
+     
+4. *AWS EC2 Instances☁️* 
 
-   - The frontend sends HTTP requests (GET, POST, PUT, DELETE) to the backend.
-
-   - The backend processes these requests and interacts with the database.
-
-- *EC2 Instance 2:* Hosts the MySQL Database. This instance is dedicated to storing and managing property data. 🗄️
-
-   - The backend communicates with the database via JDBC to perform CRUD operations.
-
-   - The database stores and retrieves property data as requested by the backend.
+   - Frontend and backend are deployed on separate EC2 instances.
+   - Security Groups are configured to restrict access to authorized traffic only.
   
 ### Interaction Flow 🔄
-Frontend → Backend: The frontend sends HTTP requests (GET, POST, PUT, DELETE) to the backend. 📤
+Frontend → Backend: The frontend sends HTTPS requests (GET, POST, PUT, DELETE) to the backend. 📤
 
 Backend → Database: The backend processes the requests, performs the necessary operations, and interacts with the MySQL database. 🛠️
 
