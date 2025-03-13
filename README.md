@@ -143,7 +143,8 @@ Backend → Frontend: HTTPS response with property data or operation result.
 
 ## Class Design
 
-![image](https://github.com/user-attachments/assets/59ba31dc-41eb-45ae-94c2-64f3e9a52538)
+![image](https://github.com/user-attachments/assets/3c6d0f9a-4e02-46e2-8a02-576b4b4f8251)
+
 
 
 The main classes in the system are:
