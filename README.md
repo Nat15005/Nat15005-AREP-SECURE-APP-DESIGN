@@ -348,9 +348,9 @@ src
    ```
 
 10. Step 10: Create a Configuration File for the Domain:
-   ```
-   sudo nano /etc/httpd/conf.d/frontend.conf
-   ```
+      ```
+      sudo nano /etc/httpd/conf.d/frontend.conf
+      ```
 
    - Add the following configuration:
    
@@ -365,11 +365,11 @@ src
       </VirtualHost>
       ```
 11. Step 11: Restart Apache:
-   ```
-   sudo systemctl restart httpd
-   ```
+      ```
+      sudo systemctl restart httpd
+      ```
 
-### Generate Certificates (Backend)
+### Generate Certificates (Frontend)
 
 1. Step 1: Install Certbot:
    ```
@@ -385,46 +385,47 @@ src
 
 Here are some screenshots of the system in action:
 
+- 📜 Frontend Certificate
+
+  ![Imagen de WhatsApp 2025-03-12 a las 19 41 26_09ebb73b](https://github.com/user-attachments/assets/7af80b41-cdff-4145-b930-1b555e2868dc)
+
+- 🔐 Login
+
+   ![Imagen de WhatsApp 2025-03-12 a las 19 41 59_91a1fff1](https://github.com/user-attachments/assets/15a1f2de-50ce-4486-91a1-f6bdc1aff14e)
+
 - 🏠 Home Page: Displays a list of properties.
-  
-   ![Captura de pantalla 2025-03-06 000624](https://github.com/user-attachments/assets/e47c2180-819d-4e50-8bec-07d88b393563)
+
+  ![Imagen de WhatsApp 2025-03-12 a las 19 42 19_827796f1](https://github.com/user-attachments/assets/d3ea1f20-878d-48e2-aa87-185729d749e4)
 
 - ➕ Create Property: Form for adding a new property.
   
-   ![pruebaCRUD](https://github.com/user-attachments/assets/64415f76-6854-49c4-925a-cb6130f0acce)
+   ![Imagen de WhatsApp 2025-03-12 a las 19 43 28_3ac93b39](https://github.com/user-attachments/assets/0f2ddcbd-da40-4ba4-a0f7-c4a8f3ed92a3)
+
 
 - ✏️ Edit Property: Form for updating an existing property.
 
-   ![pruebaUpdate1](https://github.com/user-attachments/assets/bf12963f-b74b-452b-a52f-2b10bb870ea7)
-  
-   ![Update2](https://github.com/user-attachments/assets/a49e6595-9e71-45d1-aef3-ef8322e8b83d)
+   ![Imagen de WhatsApp 2025-03-12 a las 19 43 50_a88b564e](https://github.com/user-attachments/assets/9c300acb-7b8c-4ffa-8b1c-473dd00c370d)
+
+
+   ![Imagen de WhatsApp 2025-03-12 a las 19 44 01_6090482e](https://github.com/user-attachments/assets/e56578b3-9168-48dd-9f0b-79dfeacbb651)
 
 
 - 🗑️ Delete Property: Confirmation dialog for deleting a property.
 
-   ![pruebaDELETE](https://github.com/user-attachments/assets/ec5cbd30-9856-4009-98aa-2d5d97c343eb)
+   ![Imagen de WhatsApp 2025-03-12 a las 19 44 26_75b960aa](https://github.com/user-attachments/assets/f0849819-4d11-4c10-a56d-8406ac730928)
 
-- 🔍 Filter Properties: Filter properties by
-  
-   - name
-     
-     ![FiltroNombre](https://github.com/user-attachments/assets/4db1b83d-165b-40a1-a800-7e950f89fe47)
+- 🔄 Back Working:
 
-   - size
-     
-     ![FiltroTamaño](https://github.com/user-attachments/assets/4e5d029a-d495-4991-8043-c6423ad2db56)
+   ![Imagen de WhatsApp 2025-03-12 a las 19 45 06_304f762a](https://github.com/user-attachments/assets/7332a319-3443-4a74-8b98-652afca7d852)
 
-   - price
-     
-     ![filtroPrecio](https://github.com/user-attachments/assets/bb4acaa2-eebe-4e0c-997b-051470248de6)
+- 🖥️ Backend Certificate:
 
-- ✅ Success Messages: User feedback for successful operations (e.g., property created, updated, or deleted).
-  
-     ![MensajeVerde](https://github.com/user-attachments/assets/03f726ea-5f9b-4ad3-b9c4-5d568f574eff)
+   ![Imagen de WhatsApp 2025-03-12 a las 19 45 20_116eac78](https://github.com/user-attachments/assets/a645652f-eb08-4dea-a597-1bfeb0fe68b4)
 
-- ❌ Error Messages: User feedback for failed operations (e.g., invalid input or property not found).
-  
-     ![MensajeRojo](https://github.com/user-attachments/assets/c81e1c94-5a1a-4104-8a17-b60f072823bc)
+
+- 🔑 Hashed Passwords:
+
+   ![Imagen de WhatsApp 2025-03-12 a las 19 46 07_44517938](https://github.com/user-attachments/assets/6dacccdd-7eee-4e5d-aadf-c6bec3993e3e)
 
 ## Running Tests
 
