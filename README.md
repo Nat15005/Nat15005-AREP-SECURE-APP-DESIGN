@@ -240,108 +240,147 @@ src
                         🧪 UserServiceTest.java
 
 ```                        
-## Deployment Instructions
+## Deployment and Security Steps
 
-### BackEnd
+### Backend Deployment (Spring)
 
-1. Add the Dockerfile to the Root of the Project
-2. Configure the application.properties File
+1. Step 1: Launch an EC2 Instance for the Backend
 
-   Before building the Docker image, update the application.properties file to connect to the MySQL database using the public IP of the EC2 instance where the database is hosted. Add the following configuration:
+   ![image](https://github.com/user-attachments/assets/b7f3f2c8-fd69-41c9-9653-143f4bbd2f16)
+
+2. Step 2: Configure the Security Group
+
+   ![image](https://github.com/user-attachments/assets/0ba9f351-cd49-4022-83d5-409f9fdd9a08)
+           
+3. Step 3: Connect to the EC2 Instance
    ```
-   spring.datasource.url=jdbc:mysql://<PUBLIC_IP_OF_EC2>:3306/property_db
-   spring.datasource.username=<YOUR_DB_USERNAME>
-   spring.datasource.password=<YOUR_DB_PASSWORD>
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
-   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+   ssh -i path/to/your-key.pem ec2-user@<EC2-public-IP>
    ```
-3. Build the Docker Image
-   
+4. Step 4: Install Java
    ```
-   docker build --tag areptaller5 .
+   sudo yum install java-17-amazon-corretto-devel -y
    ```
-4. Create a Repository on Docker Hub
+5. Step 5: Upload the JAR File
+      ```
+      scp -i /path/to/your-key.pem /path/to/your-app.jar ec2-user@<public-ip-of-instance>:/home/ec2-user/
+      ```
+6. Step 6: Install Certbot
+      ```
+      sudo yum install certbot -y 
+      ```
+7. Step 7: Associate Elastic IPs
+      
+   ![image](https://github.com/user-attachments/assets/dbd5321b-f143-41d0-bbb1-808e739e9b98)
 
-   ![image](https://github.com/user-attachments/assets/c27251af-16ae-468f-9117-964035dac2bb)
+### Generate Certificates (Backend)
 
-5. Tag the Local Image
-   ```
-   docker tag areptaller5 nat1505/areptaller5
-   ```
-6. Push the Image to Docker Hub
-    ```
-    docker push nat1505/areptaller5:latest
-    ```
-7. Launch the EC2 Instance
+1. Step 1: Run Certbot to generate SSL certificates:
+      ```
+      sudo certbot certonly --standalone -d your-backend-domain.com
+      ```
+2. Step 2: Convert Certificates to PKCS12 Format:
+      ```
+      sudo openssl pkcs12 -export -in /etc/letsencrypt/live/your-backend-domain.com/fullchain.pem \
+   -inkey /etc/letsencrypt/live/your-backend-domain.com/privkey.pem \
+   -out /home/ec2-user/keystore.p12 -name your-alias -passout pass:your-password
+      ```
+3. Step 3: Move the Keystore and Adjust Permissions:
+      ```
+      sudo mv /home/ec2-user/keystore.p12 /etc/ssl/certs/
+      sudo chmod 600 /etc/ssl/certs/keystore.p12
+      ```
+4. Step 4: Configure application.properties:
+      ```
+      server.port=443
+      server.ssl.enabled=true
+      server.ssl.key-store=/etc/ssl/certs/keystore.p12
+      server.ssl.key-store-password=your-password
+      server.ssl.key-alias=your-alias
+      ```
+ 5. Step 5: Start the Spring Boot application:
+      ```
+      java -jar your-app.jar
+      ```     
+### Frontend Deployment (Apache)
 
-   ![image](https://github.com/user-attachments/assets/d582cf0b-4a65-4acd-8125-a662bbb015ab)
+1. Step 1: Launch an EC2 Instance for the Frontend
 
-8. Configure AWS Security Group to Allow External Access
-   - Go to the AWS EC2 Console.
-      - Find your instance and open the Security Group settings.
-      - Edit Inbound Rules and add a rule to allow traffic:
-         - Type: Custom TCP
-         - Port Range: 8080
-         - Source: Anywhere (0.0.0.0/0)
+   ![image](https://github.com/user-attachments/assets/3c9cf18d-f189-4bfe-aa06-d5ec99d53702)
 
-   ![image](https://github.com/user-attachments/assets/cd897fb3-09f3-4b92-af97-54c7dd8d3b25)
+
+2. Step 2: Configure the Security Group
+
+   ![image](https://github.com/user-attachments/assets/a35abb44-6d93-438f-b8fb-fc495a238104)
 
            
-9. Connect to the EC2 Instance
+3. Step 3: Connect to the EC2 Instance
    ```
-   ssh -i path/to/your-key.pem ec2-user@<EC2-public-IP>
+   ssh -i /path/to/your-key.pem ec2-user@<public-ip-of-instance>
    ```
-10. Install Docker on the EC2 Instance
+4. Step 4: Install Apache:
    ```
-   sudo yum update -y
-   sudo yum install docker -y
-   sudo service docker start
-   sudo usermod -a -G docker ec2-user
+   sudo yum install httpd -y
    ```
-11. Download the Image from Docker Hub
-      ```
-      docker pull nat1505/areptaller5:latest
-      ```
-12. Run the Container
-      ```
-      docker run -d -p 8080:8080 --name areptaller5 nat1505/areptaller5
-      ```
-### EC2 Instance for MySQL
 
-1. Create an EC2 Instance
-
-   ![image](https://github.com/user-attachments/assets/04407574-5fcd-427a-968f-4e8389284a7c)
-
-2. Configure AWS Security Group to Allow External Access
-   - Go to the AWS EC2 Console.
-      - Find your instance and open the Security Group settings.
-      - Edit Inbound Rules and add a rule to allow traffic:
-         - Type: Custom TCP
-         - Port Range: 3306
-         - Source: Anywhere (0.0.0.0/0)
-
-   ![image](https://github.com/user-attachments/assets/7d49c039-aae5-4b41-a448-ebb341da3edd)
-
-3. Connect to the EC2 Instance
+5. Step 5: Enable Apache to Start Automatically:
    ```
-   ssh -i path/to/your-key.pem ec2-user@<EC2-public-IP>
+   sudo systemctl enable httpd
    ```
-4. Install Docker on the EC2 Instance
+
+6. Step 6: Start Apache:
+   ```
+   sudo yum install httpd -y
+   ```
+
+7. Step 7: Create a directory for your frontend files and change ownership:
+   ```
+   sudo mkdir /var/www/html/frontend
+   sudo chown -R ec2-user:ec2-user /var/www/html/frontend
+   ```
+8. Step 8: Upload Frontend Files:
+   ```
+   scp -i /path/to/your-key.pem -r /path/to/frontend/* ec2-user@<public-ip-of-instance>:/var/www/html/frontend/
+   ```
+
+9. Step 9: Adjust File Permissions:
+   ```
+   sudo chmod -R 755 /var/www/html/frontend
+   ```
+
+10. Step 10: Create a Configuration File for the Domain:
+   ```
+   sudo nano /etc/httpd/conf.d/frontend.conf
+   ```
+
+   - Add the following configuration:
+   
       ```
-      sudo yum update -y
-      sudo yum install docker -y
-      sudo service docker start
-      sudo usermod -a -G docker ec2-user
+        <VirtualHost *:80>
+          ServerName your-frontend-domain.com
+          DocumentRoot /var/www/html/frontend
+          <Directory /var/www/html/frontend>
+              AllowOverride All
+              Require all granted
+          </Directory>
+      </VirtualHost>
       ```
-5. Run a MySQL Container
+11. Step 11: Restart Apache:
    ```
-   docker run --name database-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=property_db -p 3307:3306 -d mysql:latest
+   sudo systemctl restart httpd
    ```
-6. Use the following command to access the MySQL console
+
+### Generate Certificates (Backend)
+
+1. Step 1: Install Certbot:
    ```
-   docker exec -it database-container mysql -u root -p
+   sudo yum install certbot-apache -y
    ```
+
+2. Step 2: Generate Let’s Encrypt certificates for your frontend domain:
+   ```
+   sudo certbot --apache -d your-frontend-domain.com
+   ``` 
+
 ## Screenshots
 
 Here are some screenshots of the system in action:
