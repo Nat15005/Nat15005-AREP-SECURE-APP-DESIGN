@@ -103,7 +103,8 @@ You should see the main page of the application.
 ## System Architecture
 The system is divided into three main components:
 
-![image](https://github.com/user-attachments/assets/04358f66-6b33-43b5-993c-f29593e5460b)
+![image](https://github.com/user-attachments/assets/7ed8fe25-f91d-486e-8aa8-42bf6efd93bb)
+
 
 1. *Frontend(Apache)🌐*  
 
@@ -127,13 +128,17 @@ The system is divided into three main components:
    - Security Groups are configured to restrict access to authorized traffic only.
   
 ### Interaction Flow 🔄
-Frontend → Backend: The frontend sends HTTPS requests (GET, POST, PUT, DELETE) to the backend. 📤
+Frontend → Backend: HTTPS request for user authentication (login/register).
 
-Backend → Database: The backend processes the requests, performs the necessary operations, and interacts with the MySQL database. 🛠️
+Backend → Database: Query to verify or store user credentials (hashed passwords).
 
-Database → Backend: The database stores and retrieves property data as requested by the backend. 📥
+Backend → Frontend: HTTPS response with authentication result (success/failure).
 
-Backend → Frontend: The backend sends responses back to the frontend, which displays the results to the user. 📤
+Frontend → Backend: HTTPS request for property data (CRUD operations).
+
+Backend → Database: Query to retrieve or update property data.
+
+Backend → Frontend: HTTPS response with property data or operation result.
 
 
 ## Class Design
