@@ -1,22 +1,50 @@
-# Property Management System
+# Property Management Secure App Design
 
 ## Project Summary
-The **Property Management System** is a web application designed to manage real estate properties. It provides CRUD (Create, Read, Update, Delete) functionality for property listings, allowing users to add, view, update, and delete properties. The system also supports pagination and search functionality to filter properties by address, price, and size.
+This project is a secure, scalable web application designed and deployed using AWS infrastructure. It focuses on implementing modern security practices, including authentication, password hashing, and TLS encryption for secure communication between the client and backend servers.
 
-The application is deployed on AWS using two EC2 instances: one for the backend and frontend, and another for the MySQL database. The backend, built with Spring Boot, handles the business logic and exposes RESTful APIs for CRUD operations. The frontend, developed with HTML, CSS, and JavaScript, provides a user-friendly interface for interacting with the system. The MySQL database stores all property-related data and is accessed by the backend
+The application consists of two main components:
+
+1. Frontend (Apache Server):
+
+   - Serves an asynchronous HTML+JavaScript client.
+
+   - Delivers client-side code over a secure connection using TLS.
+
+   - Ensures data integrity and confidentiality during download.
+
+2. Backend (Spring Framework):
+
+   - Handles backend services with RESTful API endpoints.
+
+   - Protects communication using TLS.
+
+   - Implements secure login functionality with password hashing.
+
+Both the frontend and backend are deployed on separate EC2 instances in AWS, ensuring a secure and scalable architecture.
 
 ### Key Features:
-- **Create Property**: Add new property listings with details such as address, price, size, and description.
-- **Read Property**: View a list of all properties or search for specific properties using filters.
-- **Update Property**: Modify existing property details.
-- **Delete Property**: Remove properties from the system.
-- **Pagination**: Browse properties in pages for better usability.
-- **Search**: Filter properties by address, price range, and size.
 
-## Deployment Video
+#### Security Features
+
+- TLS Encryption:
+   - Secure transmission of data using TLS certificates generated through Let’s Encrypt.
+- Login Security:
+   - Implements user authentication with passwords securely stored as hashes using BCrypt.
+- Asynchronous Client:
+   - The HTML+JavaScript client uses async techniques to optimize performance while maintaining secure communication.
+
+#### Deployment
+
+- AWS Infrastructure:
+   - The frontend (Apache) and backend (Spring) are deployed on separate EC2 instances.
+- Let’s Encrypt Certificates:
+   - Certificates are generated and installed for both the frontend and backend to enable HTTPS.
+
+## Deployment and Key Features Video
 
 
-https://github.com/user-attachments/assets/2f8a48fd-57fe-447a-a082-b20c9e934cc6
+https://github.com/user-attachments/assets/8421f559-03e6-4931-b16e-dfddf8778a0d
 
 
 ## Getting Started
@@ -37,11 +65,11 @@ Follow these steps to get the development environment running:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Nat15005/AREP_CRUD_SYSTEM.git
+   git clone https://github.com/Nat15005/Nat15005-AREP-SECURE-APP-DESIGN.git
    ```
 2. **Navigate to the project folder:**
    ```bash
-   cd AREP_CRUD_SYSTEM
+   cd Nat15005-AREP-SECURE-APP-DESIGN.git
    ```
 3. **Build the project using Maven:**
    ```bash
@@ -53,22 +81,22 @@ Follow these steps to get the development environment running:
 Once the project is built, you can start the server with the following command:
 
 ```bash
-java -jar target/crudsystem-0.0.1-SNAPSHOT.jar
+mvn spring-boot:run
 ```
 
-The server will start and listen on port `8080`.
+The server will start and listen on port `443`.
 
 ### Accessing the Application
 
 Open your web browser and go to:
 
 ```
-http://localhost:8080/
+http://localhost:443/
 ```
 
 You should see the main page of the application.
 
-![Captura de pantalla 2025-03-06 000624](https://github.com/user-attachments/assets/58e1e4d4-0112-4327-b7f6-d57774a6e2b8)
+![image](https://github.com/user-attachments/assets/3fa1db0e-702b-4ac5-82e6-663d50943425)
 
 
 ## System Architecture
