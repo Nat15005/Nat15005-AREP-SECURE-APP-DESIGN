@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.login-container {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.login-left {
+    width: 60%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Nueva clase para alinear el círculo y el texto */
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    background-color: #90aea8;
+    border-radius: 50%;
+    margin-right: 15px; /* Espacio entre el círculo y el texto */
+}
+
+.welcome-text {
+    font-size: 290%;
+    font-weight: 800;
+    color: #231f2c;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+    margin-left: 10%;
+}
+
+input {
+    width: 90%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 20px;
+    outline: none;
+}
+
+button {
+    width: 40%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #231f2c;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 40px;
+    margin-left: 25%;
+}
+
+button:hover {
+    background-color: #3a3542;
+}
+
+.login-right {
+    width: 50%;
+    background-color: #e6efed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-right img {
+    max-width: 90%;
+    height: auto;
+}

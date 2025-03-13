@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Propiedades</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="icon" type="image/png" href="images/gato1.png">
+</head>
+<body>
+<h1>Administrador de Propiedades</h1>
+
+<!-- Área para mostrar mensajes -->
+<div id="message" style="display: none;"></div>
+
+<!-- Contenedor del formulario y búsqueda -->
+<div id="form-container">
+    <!-- Contenedor externo del formulario -->
+    <div id="propertyFormContainer">
+        <div id="propertyFormWrapper">
+            <form id="propertyForm">
+                <input type="hidden" id="propertyId">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" required>
+                <label for="price">Precio:</label>
+                <input type="number" id="price" step="0.01" required>
+                <label for="size">Tamaño (m²):</label>
+                <input type="number" id="size" step="0.01" required>
+                <label for="description">Descripción:</label>
+                <textarea id="description"></textarea>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contenedor de búsqueda -->
+    <div id="searchContainer">
+        <h2>Filtrar 🔎</h2>
+        <div id="searchControls">
+            <label for="searchQuery">Dirección o descripción</label>
+            <input type="text" id="searchQuery" placeholder="Buscar">
+            <label for="maxPrice">Precio</label>
+            <input type="number" id="maxPrice" placeholder="Precio máximo">
+            <label for="maxSize">Tamaño</label>
+            <input type="number" id="maxSize" placeholder="Tamaño máximo">
+
+            <!-- Contenedor para los botones alineados en fila -->
+            <div class="button-group">
+                <button onclick="searchProperties()">Buscar</button>
+                <button onclick="clearFilters()">Quitar Filtro</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lista de propiedades -->
+<div id="propertyListContainer">
+    <h2 id="propertyListTitle">Lista de propiedades</h2>
+    <table id="propertyTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dirección</th>
+            <th>Precio</th>
+            <th>Tamaño</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Aquí se llenarán las filas dinámicamente -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Controles de paginación -->
+<div id="pagination">
+    <button id="prevPage">Anterior</button>
+    <span id="pageInfo">Página 1 de 1</span>
+    <button id="nextPage">Siguiente</button>
+</div>
+
+
+<script src="home.js"></script>
+</body>
+</html>
