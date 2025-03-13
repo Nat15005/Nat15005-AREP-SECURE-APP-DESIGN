@@ -34,10 +34,6 @@ build/
 
 .mvn
 mvnw
-application.properties
-application*.properties
-src/main/resources/application.properties
-src/main/resources/application*.properties
 mvnw.cmd
 mydatabase.mv.db
 target
