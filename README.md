@@ -434,7 +434,8 @@ To run the unit tests, use the following command:
 ```bash
 mvn test
 ```
-![image](https://github.com/user-attachments/assets/aec5719c-d399-40f1-9ba4-3ab6bfb99bac)
+![image](https://github.com/user-attachments/assets/c3e70b8a-79b1-4026-b8d0-cc079d45536a)
+
 
 ### PropertyControllerTest 🎛️
 
@@ -447,6 +448,18 @@ mvn test
 - testUpdateProperty: Validates that the PUT /api/properties/{id} endpoint updates an existing property.
 
 - testDeleteProperty: Confirms that the DELETE /api/properties/{id} endpoint deletes a property.
+
+### AuthControllerTest 🎛️
+
+- testRegisterUserSuccess: Verifies that the POST /register endpoint successfully registers a new user.
+
+- testRegisterUserFailure: Ensures that the POST /register endpoint fails when the username already exists.
+
+- testLoginSuccess: Checks that the POST /login endpoint successfully authenticates a user and returns a redirect URL.
+
+- testLoginFailureInvalidCredentials: Validates that the POST /login endpoint fails with invalid credentials.
+
+- testLoginFailureException: Confirms that the POST /login endpoint handles exceptions correctly.
 
 ### PropertyRepositoryTest 🗄️
 
@@ -464,6 +477,12 @@ mvn test
 
 - testDeleteProperty: Ensures that the deleteById method removes a property from the database.
 
+### UserRepositoryTest 🗄️
+
+- testFindByUsername: Verifies that the findByUsername method retrieves a user by their username.
+
+- testFindByUsernameNotFound: Ensures that the findByUsername method returns an empty result when the user is not found.
+
 ### PropertyServiceTest 🛠️
 
 - testCreateProperty: Verifies that the createProperty method saves a new property.
@@ -476,7 +495,19 @@ mvn test
 
 - testDeleteProperty: Confirms that the deleteProperty method removes a property.
 
-## Technologies Used
+### UserServiceTest 🛠️
+
+- testRegisterUserSuccess: Tests that the registerUser method successfully registers a new user with an encoded password.
+
+- testRegisterUserFailureUsernameExists: Ensures that the registerUser method throws an exception when the username already exists.
+
+- testAuthenticateSuccess: Verifies that the authenticate method successfully authenticates a user with valid credentials.
+
+- testAuthenticateFailureUserNotFound: Checks that the authenticate method throws an exception when the user is not found.
+
+- testAuthenticateFailureInvalidPassword: Validates that the authenticate method fails when the password is incorrect.
+
+### Technologies Used
 
 - Java: Main programming language.
 
@@ -490,7 +521,7 @@ mvn test
 
 - JUnit: For unit testing.
 
-## Author
+### Author
 
 Developed by [Natalia Rojas](https://github.com/Nat15005)
 
