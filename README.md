@@ -1,6 +1,6 @@
-# Property Management Secure App Design
+# Property Management Secure App Design 🏢🔒
 
-## Project Summary
+## Project Summary 📝
 This project is a secure, scalable web application designed and deployed using AWS infrastructure. It focuses on implementing modern security practices, including authentication, password hashing, and TLS encryption for secure communication between the client and backend servers.
 
 The application consists of two main components:
@@ -25,7 +25,7 @@ Both the frontend and backend are deployed on separate EC2 instances in AWS, ens
 
 ### Key Features:
 
-#### Security Features
+#### Security Features 🔐
 
 - TLS Encryption:
    - Secure transmission of data using TLS certificates generated through Let’s Encrypt.
@@ -34,15 +34,14 @@ Both the frontend and backend are deployed on separate EC2 instances in AWS, ens
 - Asynchronous Client:
    - The HTML+JavaScript client uses async techniques to optimize performance while maintaining secure communication.
 
-#### Deployment
+#### Deployment 🚀
 
 - AWS Infrastructure:
    - The frontend (Apache) and backend (Spring) are deployed on separate EC2 instances.
 - Let’s Encrypt Certificates:
    - Certificates are generated and installed for both the frontend and backend to enable HTTPS.
 
-## Deployment and Key Features Video
-
+## Deployment and Key Features Video 🎥
 
 
 https://github.com/user-attachments/assets/1880f278-2fca-431d-98c8-a8d7a14dfac0
@@ -528,7 +527,5 @@ Developed by [Natalia Rojas](https://github.com/Nat15005)
 ## Acknowledgments
 
 - Spring Boot Documentation: For providing comprehensive guides on building RESTful APIs.
-
-- MySQL Documentation: For detailed information on database management.
 
 - Open Source Community: For tools and resources that helped in the development of this project.
