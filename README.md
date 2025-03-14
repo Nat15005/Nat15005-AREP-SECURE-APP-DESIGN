@@ -69,7 +69,7 @@ Follow these steps to get the development environment running:
    ```
 2. **Navigate to the project folder:**
    ```bash
-   cd Nat15005-AREP-SECURE-APP-DESIGN.git
+   cd Nat15005-AREP-SECURE-APP-DESIGN
    ```
 3. **Build the project using Maven:**
    ```bash
