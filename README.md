@@ -98,6 +98,14 @@ You should see the main page of the application.
 
 ![image](https://github.com/user-attachments/assets/3fa1db0e-702b-4ac5-82e6-663d50943425)
 
+To log in, you need to register a new user by sending a POST request to the following endpoint with a username and password:
+
+```
+https://localhost/auth/register
+```
+
+![image](https://github.com/user-attachments/assets/9e956032-8a94-4751-a894-ed79976de410)
+
 
 ## System Architecture
 The system is divided into three main components:
